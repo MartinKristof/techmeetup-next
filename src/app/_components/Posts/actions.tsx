@@ -1,11 +1,19 @@
 'use server';
 
-import { isInFavorites } from '@techmeetup/libs/favorites';
+import { getFavoritesFromCookies, isInFavorites, setFavoritesToCookies } from '@techmeetup/libs/favorites';
 import { deletePostById } from '@techmeetup/libs/postsQuery';
 import { revalidatePath } from 'next/cache';
 
 export const toggleFavorite = async (id: string) => {
-  return undefined;
+  const favorites = getFavoritesFromCookies();
+
+  let newFavorites = [...favorites.favorites, id];
+
+  if (isInFavorites(id)) {
+    newFavorites = favorites.favorites.filter((favId: string) => favId !== id);
+  }
+
+  setFavoritesToCookies(newFavorites);
 };
 
 export const deletePost = async (id: string) => {

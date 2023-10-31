@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { RemoveButton } from '../RemoveButton';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
-import { deletePost } from './actions';
+import { deletePost, toggleFavorite } from './actions';
+import { Favorite } from './Favorite';
+import { isInFavorites } from '@techmeetup/libs/favorites';
 
 export const PostsItem: FC<{
   id: string;
@@ -32,7 +34,9 @@ export const PostsItem: FC<{
             <PencilSquareIcon className="h-6 w-6" />
           </Link>
         </>
-      ) : null}
+      ) : (
+        <Favorite toggleFavorite={toggleFavorite} id={id} isFavorite={isInFavorites(id)} />
+      )}
     </div>
   </div>
 );
