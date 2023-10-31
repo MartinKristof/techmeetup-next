@@ -48,6 +48,7 @@ export const EditPostForm: FC<{
         />
         <SubmitButton>Update Post</SubmitButton>
       </Form>
+      {children}
     </>
   );
 };
