@@ -1,10 +1,5 @@
 import Link from 'next/link';
-import { RemoveButton } from '../RemoveButton';
-import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import { FC } from 'react';
-import { Favorite } from './Favorite';
-import { isInFavorites } from '@techmeetup/libs/favorites';
-import { deletePost, toggleFavorite } from './actions';
 
 export const PostsItem: FC<{
   id: string;
@@ -26,17 +21,6 @@ export const PostsItem: FC<{
         </div>
       </Link>
     )}
-    <div className="flex gap-2">
-      {isAdmin ? (
-        <>
-          <RemoveButton id={id.toString()} onClick={deletePost} />
-          <Link href={`/admin/edit-post/${id.toString()}`}>
-            <PencilSquareIcon className="h-6 w-6" />
-          </Link>
-        </>
-      ) : (
-        <Favorite toggleFavorite={toggleFavorite} id={id} isFavorite={isInFavorites(id)} />
-      )}
-    </div>
+    <div className="flex gap-2">{/* Actions */}</div>
   </div>
 );

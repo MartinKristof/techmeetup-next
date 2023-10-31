@@ -18,15 +18,7 @@ export const generateMetadata = async ({ params: { id } }: EditPostPageProps): P
 };
 
 const EditPostPage: FC<EditPostPageProps> = async ({ params: { id } }) => {
-  const { post } = await getPostById(id);
-
-  return post ? (
-    <EditPostForm id={id} title={post?.title || ''} description={post?.description || ''}>
-      <FavoritesStatus id={id} />
-    </EditPostForm>
-  ) : (
-    notFound()
-  );
+  return <p>Edit post page</p>;
 };
 
 export default EditPostPage;
