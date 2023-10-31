@@ -11,6 +11,11 @@ const HomePage: FC = () => (
             Photos
           </Link>
         </li>
+        <li>
+          <Link href="/admin" className="mr-4 hover:underline md:mr-6">
+            Admin
+          </Link>
+        </li>
       </ul>
     </div>
   </Container>
