@@ -5,11 +5,7 @@ import { STATUSES } from '@techmeetup/libs/constants';
 import { addPost } from '@techmeetup/libs/postsQuery';
 import { TAddPostFormState } from './page';
 
-export const addPostAction = async (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  state: TAddPostFormState,
-  payload: FormData,
-): Promise<TAddPostFormState> => {
+export const addPostAction = async (state: TAddPostFormState, payload: FormData): Promise<TAddPostFormState> => {
   const title = payload.get('title') as string;
   const description = payload.get('description') as string;
 
