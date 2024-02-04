@@ -10,9 +10,14 @@ import { useNotification } from '@techmeetup/app/_hooks/useNotification';
 import { redirect } from 'next/navigation';
 import { STATUSES } from '@techmeetup/libs/constants';
 
+export type TEditPostFormState = {
+  message: string;
+  status: string;
+};
+
 const initialState = {
-  message: null,
-  status: null,
+  message: '',
+  status: '',
 };
 
 export const EditPostForm: FC<{
@@ -23,7 +28,7 @@ export const EditPostForm: FC<{
 }> = ({ children, id, title, description }) => {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
-  const [state, formAction] = useFormState(editPostAction.bind(null, id), initialState);
+  const [state, formAction] = useFormState<TEditPostFormState, FormData>(editPostAction.bind(null, id), initialState);
   const { showError, showSuccess } = useNotification();
 
   useEffect(() => {

@@ -3,13 +3,13 @@
 import { STATUSES } from '@techmeetup/libs/constants';
 import { updatePostById } from '@techmeetup/libs/postsQuery';
 import { revalidatePath } from 'next/cache';
+import { TEditPostFormState } from './_components/EditPostForm';
 
 export const editPostAction = async (
   id: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prevState: any,
+  prevState: TEditPostFormState,
   formData: FormData,
-): Promise<{ status: string; message: string } | undefined> => {
+): Promise<{ status: string; message: string }> => {
   // const id = formData.get('id') as string;
   const title = formData.get('title') as string;
   const description = formData.get('description') as string;
@@ -23,6 +23,8 @@ export const editPostAction = async (
 
       return { status: STATUSES.Success, message: response.message };
     }
+
+    return { status: STATUSES.Error, message: 'Any error occurred!' };
   } catch (error) {
     if (error instanceof Error) {
       return { status: STATUSES.Error, message: error.message };

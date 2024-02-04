@@ -10,13 +10,18 @@ import { redirect } from 'next/navigation';
 import { useEffect } from 'react';
 import { STATUSES } from '@techmeetup/libs/constants';
 
+export type TAddPostFormState = {
+  message: string;
+  status: string;
+};
+
 const initialState = {
-  message: null,
-  status: null,
+  message: '',
+  status: '',
 };
 
 const AddPostPage = () => {
-  const [state, formAction] = useFormState(addPostAction, initialState);
+  const [state, formAction] = useFormState<TAddPostFormState, FormData>(addPostAction, initialState);
   const { showError, showSuccess } = useNotification();
 
   useEffect(() => {
